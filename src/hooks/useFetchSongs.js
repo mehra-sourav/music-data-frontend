@@ -24,7 +24,5 @@ export const useFetchAllSongs = () => {
     fetchData();
   }, []);
 
-  return { loading, songsData, error };
+  return { isLoading: loading, songsData, error };
 };
-
-// exp;
