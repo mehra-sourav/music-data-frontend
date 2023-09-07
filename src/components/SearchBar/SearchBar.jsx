@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Searchbar = ({ value, onChange }) => {
+const Searchbar = ({ value, handleChange, handleSearch }) => {
   console.log("rendering search");
   return (
     <>
@@ -21,13 +21,14 @@ const Searchbar = ({ value, onChange }) => {
           label="Search by Song Title"
           id="searchbar"
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
         />
 
         <Button
           variant="contained"
           endIcon={<SearchIcon />}
           sx={{ width: "25%" }}
+          onClick={handleSearch}
         >
           Get Song
         </Button>

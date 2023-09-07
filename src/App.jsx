@@ -22,12 +22,14 @@ function App() {
     return <CircularProgress />;
   }
 
+  console.log("app render");
+
   return (
     <>
       <h1>Songs Data</h1>
       <SearchBar
         value={searchText}
-        onChange={handleChange}
+        handleChange={handleChange}
         onSearch={handleSearch}
       />
       <Dashboard isLoading={isLoading} songsData={songsData} error={error} />
