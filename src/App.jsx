@@ -1,11 +1,38 @@
 import { useState } from "react";
-import Dashboard from "./components/Dashboard/Dashboard";
+import { useFetchAllSongs } from "@/hooks/useFetchSongs";
+import CircularProgress from "@mui/material/CircularProgress";
+import Dashboard from "@/components/Dashboard/Dashboard";
+import SearchBar from "@/components/SearchBar/SearchBar";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [searchText, setSearchText] = useState("");
 
-  return <Dashboard />;
+  const { isLoading, songsData, error } = useFetchAllSongs();
+
+  const handleChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
+  return (
+    <>
+      <h1>Songs Data</h1>
+      <SearchBar
+        value={searchText}
+        onChange={handleChange}
+        onSearch={handleSearch}
+      />
+      <Dashboard isLoading={isLoading} songsData={songsData} error={error} />
+    </>
+  );
 }
 
 export default App;
