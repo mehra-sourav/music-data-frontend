@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useFetchAllSongs } from "@/hooks/useFetchSongs";
+import { useState, useRef, useEffect } from "react";
+import { useFetchSongData } from "@/hooks/useFetchSongs";
 import CircularProgress from "@mui/material/CircularProgress";
 import Dashboard from "@/components/Dashboard/Dashboard";
 import SearchBar from "@/components/SearchBar/SearchBar";
@@ -7,32 +7,41 @@ import "./App.css";
 
 function App() {
   const [searchText, setSearchText] = useState("");
+  const { isLoading, allSongsData, err, fetchData } = useFetchSongData();
+  const searchInputRef = useRef(null);
 
-  const { isLoading, songsData, error } = useFetchAllSongs();
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
+  const handleSearch = () => {
+    fetchData(searchText);
+
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
   };
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
-  console.log("app render");
 
   return (
     <>
       <h1>Songs Data</h1>
       <SearchBar
+        inputRef={searchInputRef}
         value={searchText}
         handleChange={handleChange}
-        onSearch={handleSearch}
+        handleSearch={handleSearch}
       />
-      <Dashboard isLoading={isLoading} songsData={songsData} error={error} />
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <Dashboard isLoading={isLoading} songsData={allSongsData} error={err} />
+      )}
     </>
   );
 }

@@ -1,6 +1,9 @@
 import { memo } from "react";
 import MUIDataTable from "mui-datatables";
 
+/**
+ * A dashboard for showing the songs data in a tabular format
+ */
 const Dashboard = ({ songsData, ...props }) => {
   const columns = songsData[0];
   const data = songsData.slice(1);
@@ -11,8 +14,6 @@ const Dashboard = ({ songsData, ...props }) => {
     filter: false,
     search: false,
   };
-
-  console.log("rendering dash");
 
   return (
     <>
