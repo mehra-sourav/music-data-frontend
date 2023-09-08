@@ -1,11 +1,25 @@
-import { useEffect } from "react";
+import { memo } from "react";
+import MUIDataTable from "mui-datatables";
 
-function Dashboard() {
-  useEffect(() => {
-    // // Call the getUsers function when the component mounts
-  }, []);
+/**
+ * A dashboard for showing the songs data in a tabular format
+ */
+const Dashboard = ({ songsData, ...props }) => {
+  const columns = songsData[0];
+  const data = songsData.slice(1);
+  const options = {
+    selectableRows: "none",
+    print: false,
+    viewColumns: false,
+    filter: false,
+    search: false,
+  };
 
-  return <h1>Dashboard</h1>;
-}
+  return (
+    <>
+      <MUIDataTable data={data} columns={columns} options={options} />
+    </>
+  );
+};
 
-export default Dashboard;
+export default memo(Dashboard);
