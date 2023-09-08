@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllSongs, fetchSongByTitle } from "@/api";
+import { fetchAllSongs, fetchSongByTitle, rateSongById } from "@/api";
 
 /**
  * A custom hook fetch songs data from the API
@@ -11,7 +11,7 @@ import { fetchAllSongs, fetchSongByTitle } from "@/api";
  *   fetchData: Function
  * }}
  */
-export const useFetchSongData = () => {
+export const useManageSongs = (setMsg, setOpen) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [songsData, setSongsData] = useState([]);
@@ -50,6 +50,24 @@ export const useFetchSongData = () => {
       });
   }
 
+  /**
+   * Rates a specfic song based on the provided ID
+   * @param {string} songId - The ID of the song to rate
+   */
+  async function rateSong(songId, newRating, x, y, updateCellValue) {
+    rateSongById(songId, newRating)
+      .then((res) => {
+        setMsg("Song was rated successfully!!");
+        updateCellValue(x, y, newRating);
+        setOpen(true);
+      })
+      .catch((err) => {
+        // Songs couldn't be rated successfully
+        setMsg("Oh no!! There was some error while rating the song");
+        setOpen(true);
+      });
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -58,6 +76,8 @@ export const useFetchSongData = () => {
     isLoading: loading,
     allSongsData: songsData,
     err: error,
+    setSongsData,
     fetchData,
+    rateSong,
   };
 };

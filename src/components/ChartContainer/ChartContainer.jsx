@@ -12,7 +12,7 @@ const ChartContainer = ({ songsData }) => {
   return (
     <Box
       style={{
-        marginBottom: 2,
+        marginBottom: 10,
         maxWidth: "100%",
         height: "60vh",
         backgroundColor: "white",
