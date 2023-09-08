@@ -16,28 +16,28 @@ const Searchbar = ({ value, handleChange, handleSearch, inputRef }) => {
   return (
     <>
       <Box
+        id="sourav"
         sx={{
           marginBottom: 2,
-          width: "1900px",
-          maxWidth: "50%",
-          backgroundColor: "white",
+          width: "100%",
           display: "flex",
+          justifyContent: "center",
         }}
       >
         <TextField
-          fullWidth
           label="Search by Song Title"
           id="searchbar"
           value={value}
           onChange={handleChange}
           inputRef={inputRef}
           onKeyDown={handleKeyPress}
+          style={{ backgroundColor: "white", width: "30%" }}
         />
 
         <Button
           variant="contained"
           endIcon={<SearchIcon />}
-          sx={{ width: "200px" }}
+          sx={{ width: "150px" }}
           onClick={handleSearch}
         >
           Get Song

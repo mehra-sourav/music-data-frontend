@@ -3,6 +3,7 @@ import { useFetchSongData } from "@/hooks/useFetchSongs";
 import CircularProgress from "@mui/material/CircularProgress";
 import Dashboard from "@/components/Dashboard/Dashboard";
 import SearchBar from "@/components/SearchBar/SearchBar";
+import Box from "@mui/material/Box";
 import "./App.css";
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
   };
 
   return (
-    <>
+    <Box>
       <h1>Songs Data</h1>
       <SearchBar
         inputRef={searchInputRef}
@@ -42,7 +43,7 @@ function App() {
       ) : (
         <Dashboard isLoading={isLoading} songsData={allSongsData} error={err} />
       )}
-    </>
+    </Box>
   );
 }
 
