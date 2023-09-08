@@ -104,3 +104,9 @@ export const extractHistogramData = (songsData, xLabel) => {
 
   return { xData: frequencyBinLabels, yData: frequencyBinValues };
 };
+
+export {
+  handleChangeUtil,
+  handleSearchUtil,
+  handleRatingChangeUtil,
+} from "@/utils/eventHandlers";

@@ -1,25 +1,19 @@
 import { memo } from "react";
 import ChartContainer from "@/components/ChartContainer/ChartContainer";
-import MUIDataTable from "mui-datatables";
+import Table from "@/components/Table/Table";
 
 /**
- * A dashboard for showing the songs data in a tabular format
+ * A container for the charts and table components
  */
-const Dashboard = ({ songsData }) => {
-  const columns = songsData[0];
-  const data = songsData.slice(1);
-  const tableOptions = {
-    selectableRows: "none",
-    print: false,
-    viewColumns: false,
-    filter: false,
-    search: false,
-  };
-
+const Dashboard = ({ songsData, handleRatingChange }) => {
   return (
     <>
       <ChartContainer songsData={songsData} />
-      <MUIDataTable data={data} columns={columns} options={tableOptions} />
+      <Table
+        songsData={songsData}
+        handleRatingChange={handleRatingChange}
+        ratingColumnLabel="rating"
+      />
     </>
   );
 };
