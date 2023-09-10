@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Bar } from "react-chartjs-2";
 import { getRandomColor, extractHistogramData } from "@/utils";
 
@@ -9,6 +9,7 @@ const Histogram = ({ songsData, xLabel }) => {
   // Extracting data from songsData and formatting them into
   // x and y arrays
   const { xData, yData } = extractHistogramData(songsData, xLabel);
+  const color = useMemo(() => getRandomColor(), []);
 
   // Creating chart data
   const data = {
@@ -17,7 +18,7 @@ const Histogram = ({ songsData, xLabel }) => {
       {
         label: "Song Duration (seconds)",
         data: yData,
-        backgroundColor: getRandomColor(),
+        backgroundColor: color,
       },
     ],
   };
