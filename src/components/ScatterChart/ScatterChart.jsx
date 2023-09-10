@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Scatter } from "react-chartjs-2";
 import { getRandomColor, extractScatterData } from "@/utils";
 
@@ -6,13 +6,15 @@ import { getRandomColor, extractScatterData } from "@/utils";
  * A component for showing a scatter chart based on the passed data
  */
 const ScatterChart = ({ songsData, xLabel, yLabel }) => {
+  const color = useMemo(() => getRandomColor(), []);
+
   // Creating chart data
   const data = {
     datasets: [
       {
         label: `${yLabel} vs. ${xLabel}`,
         data: extractScatterData(songsData, xLabel, yLabel),
-        backgroundColor: getRandomColor(),
+        backgroundColor: color,
       },
     ],
   };

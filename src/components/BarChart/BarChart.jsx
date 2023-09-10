@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Bar } from "react-chartjs-2";
 import { getRandomColor, extractBarData } from "@/utils";
 
@@ -9,6 +9,7 @@ const BarChart = ({ songsData, xLabel, yLabel }) => {
   // Extracting data from songsData and formatting them into
   // x and y arrays
   const { xData, yData } = extractBarData(songsData, xLabel, yLabel);
+  const color = useMemo(() => getRandomColor(), []);
 
   // Creating chart data
   const data = {
@@ -17,7 +18,7 @@ const BarChart = ({ songsData, xLabel, yLabel }) => {
       {
         label: yLabel,
         data: yData,
-        backgroundColor: getRandomColor(),
+        backgroundColor: color,
       },
     ],
   };
