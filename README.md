@@ -1,5 +1,7 @@
 # Music Data Dashboard
 
+Deployed at ➡️ https://music-data-dashboard.netlify.app
+
 ## Getting Started
 
 Follow these steps to get the app up and running:
