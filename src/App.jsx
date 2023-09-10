@@ -13,14 +13,17 @@ import {
 import "./App.css";
 
 function App() {
+  // States for snackbar
   const [snackMsg, setSnackMsg] = useState("");
   const [snackOpen, setSnackOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
 
+  // Initialize songs state, fetch and rate functions using custom hook
   const { isLoading, allSongsData, setSongsData, fetchData, rateSong } =
     useManageSongs(setSnackMsg, setSnackOpen);
   const searchInputRef = useRef(null);
 
+  // Event handlers for search related functionality
   const handleChange = (e) => handleChangeUtil(e, setSearchText);
   const handleSearch = () =>
     handleSearchUtil(searchText, fetchData, searchInputRef);
